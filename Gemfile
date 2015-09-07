@@ -50,5 +50,5 @@ group :test do
   gem "rspec-rails", "~> 3.0"
   gem "factory_girl_rails"
   gem "shoulda-matchers"
-  gem "faker"
+  gem "ffaker"
 end
