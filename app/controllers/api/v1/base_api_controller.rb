@@ -1,4 +1,6 @@
 class Api::V1::BaseApiController < ApplicationController
-  protect_from_forgery with: :null_session
+  # include ActionController::Serialization
   include Authenticable
+
+  protect_from_forgery with: :null_session
 end
