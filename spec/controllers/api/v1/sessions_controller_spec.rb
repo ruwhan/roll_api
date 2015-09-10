@@ -16,7 +16,6 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
       it "returns the user record corresponding to the given credentials" do 
         @user.reload
         sessions_response = JSON.parse(response.body, symbolize_names: true)
-        p sessions_response
         expect(sessions_response[:user][:email]).to eql @user.email
       end
 
