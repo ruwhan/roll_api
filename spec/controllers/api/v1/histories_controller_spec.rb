@@ -12,12 +12,18 @@ RSpec.describe Api::V1::HistoriesController, type: :controller do
       @history2 = FactoryGirl.create(:history, user: @voter, poll: @poll2, choice: @poll2.choices[1])
 
       request.headers["Authorization"] = @voter.auth_token
-      get :index, { user_id: @voter_id }, format: :json 
+      get :user, { user_id: @voter.id }, format: :json 
     end
 
     it "should returns two histories that voter have voted" do 
-      poll_response = JSON.parse(response.body, symbolize_names: true)
-      expect(poll_response[:histories].length).to eql 2
+      history_responses = JSON.parse(response.body, symbolize_names: true)
+      expect(history_responses[:histories].length).to eql 2
+    end
+
+    it "should return history that user_id matches voter id" do 
+      history_responses = JSON.parse(response.body, symbolize_names: true)
+      single_history = history_responses[:histories][0]
+      expect(single_history[:user][:id]).to eql @voter.id
     end
 
     it { should respond_with 200 }

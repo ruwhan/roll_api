@@ -4,9 +4,14 @@ Rails.application.routes.draw do
     namespace :v1, defaults: { format: :json } do 
       devise_for :users
 
-      resources :users
+      resources :users 
       resources :sessions, only: [:create, :destroy]
       resources :polls
+      resources :histories, only: [:create] do 
+        collection do 
+          get 'user'
+        end
+      end
     end
   end
 
