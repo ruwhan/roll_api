@@ -19,6 +19,4 @@ RSpec.describe History, type: :model do
   it { should belong_to(:poll) }
   it { should belong_to(:choice) }
   # it { should have_one(:choice) }
-
-  describe ""
 end

@@ -28,4 +28,27 @@ RSpec.describe Api::V1::HistoriesController, type: :controller do
 
     it { should respond_with 200 }
   end
+
+  describe "POST #create" do 
+    before(:each) do 
+      @poll_owner = FactoryGirl.create :user 
+      @voter = FactoryGirl.create :user 
+      @poll = FactoryGirl.create(:poll, user: @poll_owner)
+
+      request.headers["Authorization"] = @voter.auth_token
+      post :create, { history: { user_id: @voter.id, poll_id: @poll.id, choice_id: @poll.choices[0].id } }, format: :json
+    end
+
+    it "should return created history" do 
+      history_response = JSON.parse(response.body, symbolize_names: true)
+      expect(history_response[:history][:id]).not_to eql nil
+    end
+
+    it "should return created history and has user as voter" do 
+      history_response = JSON.parse(response.body, symbolize_names: true)
+      expect(history_response[:history][:user][:id]).to eql @voter.id
+    end
+
+   it { should respond_with 201 }
+  end
 end
