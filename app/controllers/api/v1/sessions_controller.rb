@@ -1,4 +1,6 @@
 class Api::V1::SessionsController < Api::V1::BaseApiController
+  skip_before_action :authenticate_with_token!
+
   def create
     user_email = params[:session][:email]
     user_password = params[:session][:password]
@@ -20,10 +22,5 @@ class Api::V1::SessionsController < Api::V1::BaseApiController
     current_user.destroy
 
     head 204
-  end
-
-private
-  def auth_hash
-    request.env['omniauth.auth']
   end
 end
