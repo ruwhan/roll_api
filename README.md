@@ -1,5 +1,7 @@
 
-## Roll API is Simple Ruby on Rails Polling App Api
+## Roll API Readme
+
+Roll API is Simple Ruby on Rails Polling App Api.
 
 Note: The client app will be available soon.
 
@@ -17,3 +19,8 @@ Note: The client app will be available soon.
 `bundle install`
 
 `foreman start`
+
+
+### Running test
+
+`bundle exec rspec spec`
