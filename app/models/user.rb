@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :polls, dependent: :destroy
+  has_many :polls_through_history, through: :history, class_name: "Poll", foreign_key: "poll_id", source: :poll
 
   validates :auth_token, uniqueness: true
   before_create :generate_authentication_token!

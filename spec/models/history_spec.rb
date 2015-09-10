@@ -1,7 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe History, type: :model do
-  before { @history = FactoryGirl.build(:history) }
+  before do  
+    @poll_owner = FactoryGirl.create(:user)
+    @voter = FactoryGirl.create(:user) 
+    @poll = FactoryGirl.create(:poll, user: @poll_owner)
+    @choice = @poll.choices[0]
+    @history = FactoryGirl.create(:history, user: @voter, poll: @poll, choice: @choice) 
+  end
+
   subject { @history }
 
   it { should respond_to(:user_id) }
@@ -10,5 +17,8 @@ RSpec.describe History, type: :model do
 
   it { should belong_to(:user) }
   it { should belong_to(:poll) }
-  it { should have_one(:choice) }
+  it { should belong_to(:choice) }
+  # it { should have_one(:choice) }
+
+  describe ""
 end

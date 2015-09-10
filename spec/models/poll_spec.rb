@@ -15,6 +15,7 @@ RSpec.describe Poll, type: :model do
 
   it { should belong_to(:user) }
   it { should have_many(:choices) }
+  it { should have_many(:users_through_history) }
   it { should accept_nested_attributes_for(:choices) }
 
   describe "#save" do 

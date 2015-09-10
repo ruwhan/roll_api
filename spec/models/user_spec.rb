@@ -16,6 +16,7 @@ RSpec.describe User, type: :model do
   it { should validate_uniqueness_of(:auth_token) }
 
   it { should have_many(:polls) }
+  it { should have_many(:polls_through_history) }
 
   describe "#generate_authentication_token!" do 
     it "generates_authentication_token" do 

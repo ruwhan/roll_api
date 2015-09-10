@@ -1,6 +1,7 @@
 class Poll < ActiveRecord::Base
   belongs_to :user
   has_many :choices
+  has_many :users_through_history, through: :history, class_name: "User", foreign_key: 'user_id', source: :user
   accepts_nested_attributes_for :choices
   
   validates :title, presence: true
