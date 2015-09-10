@@ -12,7 +12,7 @@ RSpec.describe Api::V1::HistoriesController, type: :controller do
       @history2 = FactoryGirl.create(:history, user: @voter, poll: @poll2, choice: @poll2.choices[1])
 
       request.headers["Authorization"] = @voter.auth_token
-      get :user, { user_id: @voter.id }, format: :json 
+      get :users, { user_id: @voter.id }, format: :json 
     end
 
     it "should returns two histories that voter have voted" do 

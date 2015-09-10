@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :polls
       resources :histories, only: [:create] do 
         collection do 
-          get 'user'
+          get 'users'
         end
       end
     end
