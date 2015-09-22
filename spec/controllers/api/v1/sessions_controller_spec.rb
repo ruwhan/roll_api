@@ -33,7 +33,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
         expect(sessions_response[:errors]).to eql "Invalid email or password"
       end
 
-      it { should respond_with 422 }
+      it { should respond_with 401 }
     end
 
     context "when user is not exist" do 
@@ -46,7 +46,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
         expect(sessions_response[:errors]). to eql "User is not exist"
       end
 
-      it { should respond_with 422 }
+      it { should respond_with 401 }
     end
   end
 
