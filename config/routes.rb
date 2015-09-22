@@ -12,6 +12,8 @@ Rails.application.routes.draw do
           get 'users'
         end
       end
+
+      match '*path', to: 'base_api#handle_cors', via: [:options]
     end
   end
 
