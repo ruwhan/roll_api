@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   scope module: :api do 
     namespace :v1, defaults: { format: :json } do 
-      devise_for :users
+      devise_for :users, :controllers => { registrations: "api/v1/users" }
 
       resources :users 
       resources :sessions, only: [:create, :destroy]
